@@ -1,0 +1,71 @@
+{% extends "entidades/index.html" %}
+
+{% load static %}
+
+{% block titular %}
+<img src="{% static '/assets/Flota.jpeg' %}"  width="500" height="100" >
+{% endblock titular %}
+
+{% block titulo %}
+<table>
+    <tr>
+        <td  class="mb-5" width="200"><h2>Vehiculos</h2></td>
+        <td>
+            <a  href="{% url 'vehiculoForm' %}"
+                class="btn btn-primary btn-sm">
+            <i class="fa fa-plus fa-lg" title="Nuevo"> </i>
+            </a>
+        </td>
+        <td>
+            <a  class="btn btn-primary btn-sm" 
+                href="{% url 'buscarVehiculos' %}">
+                <i class="fa fa-search fa-lg" title="Buscar Vehículo"></i>
+            </a>
+        </td>
+    </tr>
+    </table>
+<p>Registro de matrículas de la flotas de vehículos</p>
+{% endblock titulo %}
+
+{% block intermedio %}
+<hr>
+{% endblock intermedio %}
+
+{% block contenido %}   
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Matricula</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for v in vehiculos  %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.marca }}</td>
+            <td>{{ v.modelo }}</td>
+            <td>{{ v.matricula }}</td>
+            <td>
+                <a
+                  href="{% url 'vehiculoUpdate' v.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                  <i class="fa fa-edit fa-sm" title="Editar"></i>
+                </a>
+                <a
+                  href="{% url 'vehiculoDelete' v.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                  <i class="fa fa-trash fa-sm" title="Borrar"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
+    
+    

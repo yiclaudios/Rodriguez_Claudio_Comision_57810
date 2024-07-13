@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Te administramos tu flota</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            {% if user.is_authenticated %}
+                <!-- Sidebar-->
+                <div class="border-end bg-white" id="sidebar-wrapper">
+                    <div class="sidebar-heading border-bottom bg-light">
+                        <img src="{% static '/assets/RegisteredTM.svg.png' %}"  width="15" height="15" >    T . A . F </div>
+                    <div class="list-group list-group-flush">
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'vehiculos' %}">
+                            <img src="{% static '/assets/vehiculo.png' %}"  width="40" height="40" >  Vehiculos </a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'clientes' %}">
+                            <img src="{% static '/assets/cliente.png' %}"  width="40" height="40" >  Cliente</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'empleados' %}">
+                            <img src="{% static '/assets/job.png' %}"  width="40" height="40" >  Empleado</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'proveedores' %}">
+                            <img src="{% static '/assets/proveedor.png' %}"  width="40" height="40" >  Proveedor</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'acerca' %}">
+                            <img src="{% static '/assets/acercaDe.png' %}"  width="40" height="40" >  Acerca de mi</a>
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                <li class="nav-item">
+                                    {% if user.is_authenticated %}
+                                    <div class="text-center">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <li class="nav-item active">
+                                                        <a class="nav-link" href="{% url 'home' %}">Inicio</a></li>
+                                                </td>
+                                                <td>
+                                                    <a class="nav-link" id="navbarDropdown" href="#" role="button" aria-haspopup="true" 
+                                                        data-bs-toggle="dropdown" aria-expanded="false">Usuario: 
+                                                        [{{user.username}}]
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{% url 'agregarAvatar' %}">
+                                                        <img src="{{ request.session.avatar }}" height="40px" weigth="40px" alt="Mi Foto" >
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a  class="btn btn-primary" href="{% url 'perfil' %}">Perfil</a>
+                                                </td>
+                                                <td>
+                                                    <form method="post" action="{% url 'logout' %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-success">Logout</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    {% else %}
+                                        <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                                        <a class="btn btn-success" href="{% url 'registro' %}">Registrate</a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
+                <div class="container-fluid">
+                    
+                    {% block titular %}
+                    <img src="{% static '/assets/Flota.jpeg' %}"  width="500" height="100" >
+                    {% endblock titular %}
+
+                    {% block titulo %}
+                        <h1 class="mb-5">Sistema  Te Administramos tu Flota</h1>
+                        <hr>                                
+                        <p>Sistema diseñaro para brindar el soporte a flotas de vehículos<br><br>
+                            Ideal para flotas de taxis, ubers, camiones, etc.</p>
+                    {% endblock titulo %}
+                    
+                    {% block intermedio %}
+                    {% endblock intermedio %}
+
+                    {% block contenido %}
+            
+                    {% endblock contenido %}
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

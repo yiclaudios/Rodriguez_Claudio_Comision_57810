@@ -1,0 +1,63 @@
+{% extends "entidades/index.html" %}
+{% load static %}
+
+{% block titular %}
+<img src="{% static '/assets/Flota.jpeg' %}"  width="500" height="100" >
+{% endblock titular %}
+
+{% block titulo %}
+<table>
+    <tr>
+        <td  class="mb-5" width="200"><h2>Clientes</h2></td>
+        <td>
+            <a  href="{% url 'clienteForm' %}"
+                class="btn btn-primary btn-sm">
+            <i class="fa fa-plus fa-lg" title="Nuevo"> </i>
+            </a>
+        </td>
+    </tr>
+    </table>
+{% endblock titulo %}
+
+{% block intermedio %}
+<hr>
+{% endblock intermedio %}
+
+{% block contenido %}   
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>EMail</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in clientes %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.nombre }}</td>
+                <td>{{ c.apellido }}</td>
+                <td>{{ c.email }}</td>
+                <td>
+                    <a
+                    href="{% url 'clienteUpdate' c.id %}"
+                    class="btn btn-primary"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <i class="fa fa-edit fa-sm" title="Editar"></i>
+                    </a>
+                    <a
+                    href="{% url 'clienteDelete' c.id %}"
+                    class="btn btn-danger"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                    <i class="fa fa-trash fa-sm" title="Borrar"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
+    
+    

@@ -1,0 +1,63 @@
+{% extends "entidades/index.html" %}
+{% load static %}
+
+{% block titular %}
+<img src="{% static '/assets/Flota.jpeg' %}"  width="500" height="100" >
+{% endblock titular %}
+
+{% block titulo %}
+<table>
+    <tr>
+        <td  class="mb-5" width="200"><h2>Empleados</h2></td>
+        <td>
+            <a  href="{% url 'empleadoForm' %}"
+            class="btn btn-primary btn-sm">
+            <i class="fa fa-plus fa-lg" title="Nuevo"> </i>
+        </a>
+    </td>
+</tr>
+</table>
+<p>Registro de los empleados activos de la empresa</p>
+{% endblock titulo %}
+
+{% block intermedio %}
+<hr>
+{% endblock intermedio %}
+
+{% block contenido %}   
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Documento</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for e in empleados %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nombre }}</td>
+            <td>{{ e.apellido }}</td>
+            <td>{{ e.documento }}</td>
+            <td>
+                <a
+                  href="{% url 'empleadoUpdate' e.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                  <i class="fa fa-edit fa-sm" title="Editar"></i>
+                </a>
+                <a
+                  href="{% url 'empleadoDelete' e.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                  <i class="fa fa-trash fa-sm" title="Borrar"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
+    

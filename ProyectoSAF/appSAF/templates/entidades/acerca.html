@@ -1,0 +1,37 @@
+{% extends "entidades/index.html" %}
+{% load static %}
+
+{% block titular %}
+<img src="{% static '/assets/Flota.jpeg' %}"  width="500" height="100" >
+{% endblock titular %}
+
+{% block titulo %}
+<h1 class="mb-5">Acerca de mi...</h1>
+{% endblock titulo %}
+
+{% block intermedio %}
+{% endblock intermedio %}
+
+{% block contenido %}
+<h2 class="mb-5">Esta página está desarrollada dentro del curso de Python.<br>
+Desarrollado por Claudio Rodriguez<br>
+País: Uruguar</h2>
+<h2 class="mb-5">Profesional en informática, con titulo de Analista de Sistemas.<br>
+Poseo una experiencia en el desarrollo de software de 14 años en entorno Microsoft.<br>
+Principalmente en el lenguaje C#<br><br>
+Desde muy chico me llamó la atención siempre la tecnología, queriendo dedicarme a la robótica. <br>
+El poco acceso a esa tecnologia en mis años más joven, fue haciendo que perdiera interes en robótica, pero creció dentro del área de sistemas.
+</h2>
+<hr>
+<h2 class="mb-5">T.A.F - Es una proyecto ideado hace unos años, y aprovechando el curso de Python y el proyecto final, es que he decidido realizarlo<br>
+La idea es un sistema que permita a una persona poder administrar flotas de vehículos, controlar los gastos y el personal de la empresa.<br>
+<br>
+<div>
+    <img src="{% static '/assets/emailMe.png' %}"  width="100" height="130">
+    <a class="mb-5" href="mailto:yiclaudios@hotmail.com">Ponte en contacto conmigo: yiclaudios@hotmail.com</a>
+</div>
+</h2>
+
+<p class="text-muted small mb-4 mb-lg-0">&copy; Claudio Rodriguez 2024. All Rights Reserved.</p>
+{% endblock contenido %}
+    

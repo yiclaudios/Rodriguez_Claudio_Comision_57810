@@ -1,0 +1,22 @@
+{% extends "entidades/index.html" %}
+
+{% block titulo %}
+    <h1 class="mb-5">Buscar vehículo</h1>                                
+{% endblock titulo %}
+
+{% block intermedio %}
+{% endblock intermedio %}
+
+{% block contenido %}   
+    
+    <form action="{% url 'encontrarVehiculos' %}" method="get">
+        {% csrf_token %}
+        <table>
+            <p>Ingrese la matrícula a buscar: <input type="text" name="buscar" id="buscar"> </p>
+        </table>
+        <input class="btn btn-primary bt-lg" type="submit" value="Buscar">
+    </form>
+
+{% endblock contenido %}
+    
+    
